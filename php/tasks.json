@@ -1,12 +1,1 @@
-[
-    {
-        "title": "asdasdasd",
-        "responsible": "asdasasd",
-        "status": "TO_DO"
-    },
-    {
-        "title": "asdasd",
-        "responsible": "asdasd",
-        "status": "TO_DO"
-    }
-]
+[{"title":"sdfsdfsdf","responsible":"sdfsdf","status":"TO_DO"},{"title":"asdasd","responsible":"adsd","status":"DONE"}]

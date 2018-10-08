@@ -15,6 +15,7 @@ function addTask() {
         var array = loadArrayTasks();
         array.push(taskObj);
         saveTask(array);
+        loadAllTasks();
     }
 }
 
@@ -28,22 +29,29 @@ function loadArrayTasks(){
 }
 
 function saveTask(task) {
-    sendTaskToAdd(task);
+    sendTasksToServer(task);
 }
 
 function deleteTask(task) {
-    var jsonTask = JSON.stringify(task);
+    var arrayAux = loadArrayTasks();
+    var indexTask = arrayAux.indexOf(task);
+    var arrayWithoutTask = arrayAux.splice(indexTask, 1);
+    sendTasksToServer(arrayAux);
 }
 
-function sendTaskToAdd(task) {
-    var jsonTask = JSON.stringify(task);
+function updateTask(task){
+    var arrayAux = loadArrayTasks();
+    var indexTask = arrayAux.indexOf(task);
+    var arrayWithoutTask = arrayAux.splice(indexTask, 1);
+    arrayAux.push(task);
+    sendTasksToServer(arrayAux);
+}
+
+function sendTasksToServer(tasks) {
+    var jsonTask = JSON.stringify(tasks);
     var taskRequest = new XMLHttpRequest();
     sendTasksToPersist(jsonTask);
     readAllTasks();
-}
-
-function sendTaskToDelete(task) {
-
 }
 
 function sendTasksToPersist(tasksJson) {
@@ -93,4 +101,8 @@ class Task {
     }
 }
 
-readAllTasks();
+function loadAllTasks(){
+    readAllTasks();
+}
+
+loadAllTasks();
