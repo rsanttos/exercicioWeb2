@@ -124,14 +124,7 @@
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">Main</span>         
           <ul class="list-unstyled">
-            <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
-            <li><a href="form_tarefa.html"> <i class="icon-padnote"></i>Cadastrar tarefa </a></li>
-            <li><a href="list_tarefas.html"> <i class="icon-home"></i>Tarefas </a></li>
-            <li><a href="processos.html"> <i class="icon-home"></i>Processos </a></li>
-            <li><a href="colaboradores.html"> <i class="icon-home"></i>Colaboradores </a></li>
-            <li><a href="form_etiqueta.html"> <i class="icon-home"></i>Cadastrar etiqueta </a></li>
-            <li><a href="list_etiquetas.html"> <i class="icon-home"></i>Etiquetas </a></li>
-            <li><a href="form_meta.html"> <i class="icon-home"></i>Cadastrar meta </a></li>
+            <li class="active"><a href="todo_list.html"> <i class="icon-home"></i>To do list </a></li>
           </ul>
         </nav>
         <div class="content-inner">
@@ -148,7 +141,7 @@
               <li class="breadcrumb-item active">Tables            </li>
             </ul>
           </div>
-          <section class="tables">   
+        <section class="form_tarefa">   
             <div class="container-fluid">
               <div class="row">
                 <div class="col-lg-12">
@@ -160,52 +153,94 @@
                       </div>
                     </div>
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Tarefas</h3>
+                      <h3 class="h4">Cadastrar tarefa</h3>
                     </div>
                     <div class="card-body">
-                      <div class="table-responsive">                       
-                        <table class="table table-striped table-hover">
-                          <thead>
-                            <tr>
-                              <th>Título</th>
-                              <th>Responsável</th>
-                              <th>Data para térmito</th>
-                              <th>Processo</th>
-                              <th>Situação</th>
-                              <th>Etiqueta</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">Cadastrar BacenJud</th>
-                              <td>Joaozinho</td>
-                              <td>15/09/2018</td>
-                              <td>0632190-20.2009.8.20.0001</td>
-                              <td>EM ANDAMENTO</td>
-                            <td>Penhora eletrônica no BacenJud</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Mandado de execução</th>
-                              <td>Maria</td>
-                              <td>12/09/2018</td>
-                              <td>0632190-20.2009.8.20.0001</td>
-                              <td>ATRASADA</td>
-                            <td>Elaboração de mandados</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Cadastrar Renajud</th>
-                              <td>Joana</td>
-                              <td>30/09/2018</td>
-                              <td>0632190-20.2009.8.20.0001</td>
-                              <td>EM ANDAMENTO</td>
-                            <td>Penhora eletrônica no Renajud</td>
-                            </tr>
-                          </tbody>
-                        </table>
+                      <div class="form-horizontal">
+                            <div class="form-group row">
+                              <label class="col-sm-2 form-control-label">Título</label>
+                              <div class="col-sm-3">
+                                <input id="task_title" type="text" class="form-control" />                                  
+                              </div>  
+                              <label class="col-sm-2 form-control-label">Responsavel</label>
+                              <div class="col-sm-3">
+                                <input id="task_responsable" type="text" class="form-control" />                                  
+                              </div>                               
+                              <div class="col-sm-2">
+                                <button class="btn btn-primary" onclick="addTask();">Cadastrar!</button>
+                              </div>
+                            </div>
+                       </div>
+                    </div> 
+                  </div>
+                </div>                 
+              </div>
+            </div>
+          </section>
+          <section class="list_tarefa">   
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="card" id="tasks_to_do">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard3" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
                       </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">A fazer</h3>
+                    </div>
+                  </div>
+                </div>  
+                <div class="col-lg-4">
+                  <div class="card" id="tasks_doing">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard3" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                      </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Fazendo</h3>
+                    </div>
+                  </div>
+                </div>  
+                <div class="col-lg-4">
+                  <div class="card" id="tasks_done">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard3" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                      </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Feitas</h3>
                     </div>
                   </div>
                 </div>               
+              </div>
+            </div>
+          </section>
+          <section>
+            <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+              <div role="document" class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 id="exampleModalLabel" class="modal-title">Editar tarefa</h4>
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="form-group">
+                        <label>Título</label>
+                        <input type="editTitle" placeholder="Novo título da tarefa" class="form-control">
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>
+                    <button type="button" id="btnUpdate" class="btn btn-primary">Salvar alterações</button>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -235,5 +270,7 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script src="js/rs_todo_list_v2.js"></script>
+    <script src="tarefa.js"></script>
   </body>
 </html>

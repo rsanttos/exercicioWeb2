@@ -124,14 +124,7 @@
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">Main</span>         
           <ul class="list-unstyled">
-            <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
-            <li><a href="form_tarefa.html"> <i class="icon-padnote"></i>Cadastrar tarefa </a></li>
-            <li><a href="list_tarefas.html"> <i class="icon-home"></i>Tarefas </a></li>
-            <li><a href="processos.html"> <i class="icon-home"></i>Processos </a></li>
-            <li><a href="colaboradores.html"> <i class="icon-home"></i>Colaboradores </a></li>
-            <li><a href="form_etiqueta.html"> <i class="icon-home"></i>Cadastrar etiqueta </a></li>
-            <li><a href="list_etiquetas.html"> <i class="icon-home"></i>Etiquetas </a></li>
-            <li><a href="form_meta.html"> <i class="icon-home"></i>Cadastrar meta </a></li>
+            <li class="active"><a href="todo_list.html"> <i class="icon-home"></i>To do list </a></li>
           </ul>
         </nav>
         <div class="content-inner">
@@ -222,6 +215,28 @@
                     </div>
                   </div>
                 </div>               
+              </div>
+            </div>
+          </section>
+          <section>
+            <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+              <div role="document" class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 id="exampleModalLabel" class="modal-title">Editar tarefa</h4>
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="form-group">
+                        <label>Título</label>
+                        <input type="editTitle" placeholder="Novo título da tarefa" class="form-control">
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>
+                    <button type="button" id="btnUpdate" class="btn btn-primary">Salvar alterações</button>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
