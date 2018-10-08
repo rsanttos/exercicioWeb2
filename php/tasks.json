@@ -1,5 +1,12 @@
-{
-    "title": "adasd",
-    "responsible": "asdad",
-    "status": "TO_DO"
-}
+[
+    {
+        "title": "asdasdasd",
+        "responsible": "asdasasd",
+        "status": "TO_DO"
+    },
+    {
+        "title": "asdasd",
+        "responsible": "asdasd",
+        "status": "TO_DO"
+    }
+]

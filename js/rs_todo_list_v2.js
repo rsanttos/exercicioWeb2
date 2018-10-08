@@ -1,19 +1,9 @@
-var divTasksToDo = document.getElementById("tasks_to_do");
-var divTasksDoing = document.getElementById("tasks_doing");
-var divTasksDone = document.getElementById("tasks_done");
-
 var inputTaskTitle = document.getElementById("task_title");
 var inputTaskResponsible = document.getElementById("task_responsable");
 
-var classSubCard = "row card-body";
-var classStartTask = "btn btn-sm btn-primary";
-var classFinishTask = "btn btn-sm btn-danger";
-var classEditTask = "btn btn-sm btn-warning";
-var classTask = "btn btn-sm";
+var TASK_LIST_LOCAL = "taskList";
 
-var TASK_LIST_LOCAL = "taskList"; 
-
-var allTasks = new Array();
+var allTasks;
 
 function addTask() {
     var taskTitle = inputTaskTitle.value;
@@ -21,8 +11,20 @@ function addTask() {
 
     if (taskTitle != "") {
         var taskObj = new Task(taskTitle, taskResponsible);
-        saveTask(taskObj);
+        readAllTasks();
+        var array = loadArrayTasks();
+        array.push(taskObj);
+        saveTask(array);
     }
+}
+
+function loadArrayTasks(){
+    var array = new Array();
+    var i;
+    for(i = 0 ; i < allTasks.length ; i++){
+        array.push(allTasks[i]);
+    }
+    return array;
 }
 
 function saveTask(task) {
@@ -31,22 +33,17 @@ function saveTask(task) {
 
 function deleteTask(task) {
     var jsonTask = JSON.stringify(task);
-    console.log(jsonTask);
 }
 
 function sendTaskToAdd(task) {
     var jsonTask = JSON.stringify(task);
     var taskRequest = new XMLHttpRequest();
     sendTasksToPersist(jsonTask);
+    readAllTasks();
 }
 
 function sendTaskToDelete(task) {
 
-}
-
-function loadTasks() {
-    var tasks = readAllTasks();
-    return tasks;
 }
 
 function sendTasksToPersist(tasksJson) {
@@ -55,7 +52,6 @@ function sendTasksToPersist(tasksJson) {
     taskRequest.onload = function () {
         if (taskRequest.status >= 200 && taskRequest.status < 400) {
             var persistedJsonTasks = taskRequest.responseText;
-            localStorage.setItem(TASK_LIST_LOCAL, persistedJsonTasks);
         } else {
             console.log("Servidor ativo, mas ocorreu um erro!" + taskRequest.status);
         }
@@ -68,9 +64,25 @@ function sendTasksToPersist(tasksJson) {
     taskRequest.send(contentRequest);
 }
 
-function readAllTasks(){
-    var allTasks = localStorage.getItem(TASK_LIST_LOCAL);
-    return allTasks;
+function readAllTasks() {
+    var persistedJsonTasks;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function () {
+        if (xmlhttp.status >= 200 && xmlhttp.status < 400) {
+            saveLocalTasks(xmlhttp.responseText);
+        }
+    };
+    xmlhttp.open("GET", "php/load_tasks.php", true);
+    xmlhttp.send();
+}
+
+function saveLocalTasks(localTasks) {
+    if(localTasks != "" && localTasks != null){
+        allTasks = JSON.parse(localTasks);
+    } else {
+        allTasks = new Array();
+    }
+    loadTasksInView(allTasks);
 }
 
 class Task {
@@ -81,4 +93,4 @@ class Task {
     }
 }
 
-loadTasks();
+readAllTasks();
