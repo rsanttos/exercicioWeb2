@@ -49,7 +49,6 @@ function updateTask(task){
 
 function sendTasksToServer(tasks) {
     var jsonTask = JSON.stringify(tasks);
-    var taskRequest = new XMLHttpRequest();
     sendTasksToPersist(jsonTask);
     readAllTasks();
 }
