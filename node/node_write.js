@@ -5,5 +5,3 @@ function writeNode() {
     console.log('Arquivo substituido');
   });
 }
-
-writeNode();
